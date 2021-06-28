@@ -325,9 +325,9 @@ angular.module('RDapp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngMdIcons','ngF
   $http.post(apiUrl+'/users/lire',{id: $routeParams.id})
   .then(function(resp) {
     $scope.article = resp.data.data;
-    $scope.pdfUrl = 'http://localhost/pdf/'+$scope.article.article+'.pdf';
+    $scope.pdfUrl = 'https://wail-e-conference.herokuapp.com/pdf/'+$scope.article.article+'.pdf';
     $('.artPhoto').css({
-      'background': 'url(http://localhost/photo/'+resp.data.data.photo+')',
+      'background': 'url(https://wail-e-conference.herokuapp.com/photo/'+resp.data.data.photo+')',
       'background-repeat': 'no-repeat',
       'background-size': 'cover'
     });
