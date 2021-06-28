@@ -1,0 +1,196 @@
+<style type="text/css">
+.adinp {
+    padding: 15px;
+    background-color: #2f2f2f;
+}
+
+.adinpt {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.adinpb {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 1px;
+}
+
+.inp {
+    border: 0 !important;
+    background-color: transparent !important;
+    outline: none !important;
+    color: #fff !important;
+}
+
+.adbtn {
+    background-color: #575757 !important;
+    width: 100%;
+    margin: 0;
+    margin-top: 15px;
+}
+
+md-toast {
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    top: 0;
+    bottom: inherit;
+    padding: 0;
+    text-align: center;
+    color: red !important;
+}
+
+md-toast span {
+    width: auto;
+    background-color: red !important;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    /*margin: 25px 0;*/
+    width: 100%;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+#btn{
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    background-color: #474747;
+    color: #fff;
+    margin: 10px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+#btn:hover{
+    background-color: #575757;
+    transition: 0.3s;
+}
+</style>
+<div layout="row" flex>
+    <div ng-hide="admin.islogin" layout="column" flex style="background-color:#474747;">
+        <div flex></div>
+        <div layout="row">
+            <div flex></div>
+            <div layout="column">
+                <div class="adinp adinpt">
+                    <md-icon ng-md-icon icon="account_circle" style="fill:#fff;"></md-icon>
+                    <input class="inp" type="text" placeholder="identifiant admin" ng-model="admin.name">
+                </div>
+                <div class="adinp adinpb">
+                    <md-icon ng-md-icon icon="lock" style="fill:#fff;"></md-icon>
+                    <input class="inp" type="password" placeholder="Mot de passe" ng-model="admin.pass">
+                </div>
+                <div class="">
+                    <md-button class="md-raised md-primary adbtn" ng-click="adLogin()">Connexion</md-button>
+                </div>
+            </div>
+            <div flex></div>
+        </div>
+        <div flex></div>
+    </div>
+    <div ng-show="admin.islogin" layout="column" flex>
+    	<div layout="row">
+    		<div id="btn" ng-click="isArticle()" flex>
+                <md-icon ng-md-icon icon="description" style="fill: #fff"></md-icon>
+                Articles
+            </div>
+    		<div id="btn" ng-click="isUser()" flex>
+                <md-icon ng-md-icon icon="group" style="fill: #fff"></md-icon>
+                Users
+            </div>
+    	</div>
+        <md-content id="Article" layout-padding ng-show="inArticle" flex>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Auteur</th>
+                        <th>PDF Size</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in adArt">
+                        <td>{{ $index + 1 }}</td>
+                        <td> <span style="cursor:pointer;" ng-click="goArt(x._id)">{{ x.title }}</span> </td>
+                        <td>{{ x.user.name }}</td>
+                        <td>{{ formatSize(x.size) }}</td>
+                        <td>
+                            <md-button class="md-raised md-primary" ng-disabled="x.accept" ng-click="accept(x,$index)">
+                                <md-icon ng-md-icon icon="verified_user"></md-icon>
+                                accept
+                            </md-button>
+                            <md-button class="md-raised md-accent" ng-click="delete(x._id)">
+                                <md-icon ng-md-icon icon="delete_forever"></md-icon>
+                                delete
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-content>
+
+        <md-content id="Users" layout-padding ng-show="inUser" flex>
+            <table class="styled-table">
+                <thead>
+                    <tr style="background-color: #4caf50;">
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>User ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in adUsers">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.email }}</td>
+                        <td>{{ x._id }}</td>
+                        <td>
+                            <md-button class="md-raised md-accent" ng-click="userDelete(x._id)">
+                                <md-icon ng-md-icon icon="delete_forever"></md-icon>
+                                delete
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-content>
+    </div>
+</div>

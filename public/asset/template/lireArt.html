@@ -1,0 +1,27 @@
+<script type="text/javascript">
+$(function() {
+    /*$('.artPhoto').width($(window).width());
+    $('.artPhoto').height($(window).height());
+    $(window).on('resize', function() {
+        $('.artPhoto').width($(window).width());
+        $('.artPhoto').height($(window).height());
+    });*/
+});
+
+</script>
+<style type="text/css">
+
+.artInfo {
+    background-color: rgba(0, 0, 0, 0.5);
+    /*filter: blur(8px);
+    -webkit-filter: blur(8px);*/
+    color:  #fff;
+    padding: 10px;
+}
+</style>
+<div layout="" flex>
+<div class="artPdf" flex>
+        <object ng-attr-data="{{pdfUrl | trustAsResourceUrl}}" type="application/pdf" style="min-height: 100%;width:100%"></object>
+    </div>
+</div>
+

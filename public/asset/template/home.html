@@ -1,0 +1,102 @@
+<style media="screen">
+  .wlc2{
+    background: url(asset/img/article.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 250px;
+    text-align: center;
+    font-size: 24px;
+    color: #ffff;
+    font-family: Monospace;
+  }
+  .wlc{
+    background-image: linear-gradient(to top, #92e2f9 0, #7798f4 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 250px;
+  }
+  md-list-item{
+    margin-top: 10px;
+  }
+  .search{
+    width: 100%;
+    margin-bottom: 15px;
+    background: #474747;
+    height: 50px;
+    border-radius: 5px;
+    line-height: 50px;
+  }
+  .search input{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+    color: #ffffff;
+  }
+</style>
+
+
+<md-content layout="row" layout-padding flex>
+  <div flex="10"></div>
+  <div layout="column" flex="">
+    <md-card ng-repeat="x in articles | orderBy: 'date':true | filter:search">
+        <md-card-header>
+          <md-card-avatar>
+            <img src="asset/img/user.png" alt="Washed Out"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title" style="font-size: 120%;"><b>{{x.user.name}}</b></span>
+            <span class="md-title">
+              <md-icon ng-md-icon icon="offline_pin"></md-icon>
+            </span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="http://localhost/photo/{{x.photo}}" class="md-card-image" style="max-height: 250px;" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline"><b>{{x.title}}</b></span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p style="color:grey;">
+            {{x.description}}
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="lire(x._id)">lire l'article</md-button>
+        </md-card-actions>
+      </md-card>
+
+  </div>
+  <div flex="10"></div>
+  <div flex="30" layout="column">
+    <div class="search" layout="row">
+      <md-icon ng-md-icon icon="search" style="fill: #fff"></md-icon>
+      <input type="text" ng-model="search" value="" flex>
+    </div>
+    <div class="md-whiteframe-2dp wlc" >
+      <div class="wlc2" layout="column">
+        <span flex></span>
+        <span>
+        <b>  Bienvenue dans la communauté <br>E-Conference</b>
+        </span>
+      </div>
+    </div>
+    <div style="height:50px">
+
+    </div>
+    <hr>
+    <div style="text-align: center;">
+      <b>Auteurs vérifiés</b>
+    </div>
+    <md-list-item ng-repeat="person in users" class="md-whiteframe-2dp">
+      <img alt="person" src="asset/img/users.png" class="md-avatar" />
+      <p><b>{{ person.name }}</b></p>
+    </md-list-item>
+
+  </div>
+</md-content>

@@ -1,0 +1,148 @@
+<div layout="row" flex>
+  <div class="bdflt" style="width:50px;height:100%;" layout="column">
+
+    <span flex=""></span>
+
+    <md-button class="md-icon-button" ng-click="changeTab(0)" aria-label="home">
+      <md-tooltip md-direction="right">Compte</md-tooltip>
+      <md-icon ng-md-icon icon="person" style="fill: #fff"></md-icon>
+    </md-button>
+
+    <span flex=""></span>
+
+    <md-button class="md-icon-button" ng-click="changeTab(1)" aria-label="home">
+      <md-tooltip md-direction="right">Article</md-tooltip>
+      <md-icon ng-md-icon icon="description" style="fill: #fff"></md-icon>
+    </md-button>
+
+    <span flex=""></span>
+
+    <md-button class="md-icon-button" ng-click="changeTab(2)" aria-label="home" style="display: none;">
+      <md-tooltip md-direction="right">Notefication</md-tooltip>
+      <md-icon ng-md-icon icon="notifications" style="fill: #fff"></md-icon>
+    </md-button>
+
+    <span flex=""></span>
+
+    <md-button class="md-icon-button" ng-click="logout()" aria-label="home" style="display: none;">
+      <md-tooltip md-direction="right">Deconection</md-tooltip>
+      <md-icon ng-md-icon icon="power_settings_new" style="fill: #fff"></md-icon>
+    </md-button>
+
+    <span flex=""></span>
+
+  </div>
+  <div flex="">
+    <style >
+      .btab md-tabs-canvas{
+        display: none !important;
+      }
+      .btab {
+        height: 100% !important;
+      }
+       .btab md-tab-content, .btab md-tabs-content-wrapper {
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+      }
+      .btab md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+          min-height: 100% !important;
+      }
+      .bdflt{
+        background-color: rgb(40,53,147);
+      }
+      .bdark{
+        background-color: rgb(66,66,66);
+      }
+      .btxt{
+        color: #fff;
+      }
+    </style>
+    <md-tabs class="btab" md-center-tabs md-selected="selectedTab">
+      <md-tab label="one">
+        <md-content class="md-padding">
+          <h2 class="md-display-1">Utilisateur: Info</h2>
+          
+          <md-card>
+            <md-card-title>
+              <md-card-title-media>
+                <div class="md-media-sm card-media" layout 
+                  style="background-color:#673ab7;border-radius:100%;margin-right:10px">
+                  <md-icon ng-md-icon icon="account_circle" style="fill: #fff;"></md-icon>
+                </div>
+              </md-card-title-media>
+              <md-card-title-text>
+                <span class="md-headline" style="text-transform: uppercase;">{{user.name}}</span>
+                <span class="md-subhead description">Email: {{user.email}}</span>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+
+        </md-content>
+      </md-tab>
+      <md-tab label="two" class="md-padding">
+        <h2 class="md-display-1 tbttl">Article</h2>
+
+        <div layout="row">
+          <md-content class="md-padding md-whiteframe-2dp" flex="">
+
+            <md-list ng-controller="ListCtrl" ng-cloak>
+              <md-list-item ng-repeat="x in artList" ng-click="artLire(x.state, x.id)">
+                <md-icon ng-md-icon icon="description" style="margin-top: 7px;"></md-icon>
+                <p style="width:100%;">{{x.name}}</p>
+                <p style="width:100%;margin-right: 10px;margin-left: 10px;">PDF Taille: {{x.size}}</p>
+                <p style="width:100%;">
+                  Etat: 
+                  <span ng-if="x.state">
+                    <md-icon ng-md-icon icon="verified_user" ></md-icon>
+                    Vérifié
+                  </span>
+                  <span ng-if="!x.state">
+                    <md-icon ng-md-icon icon="watch_later" ></md-icon>
+                    En Attente
+                  </span>
+                </p>
+
+                <md-icon ng-md-icon icon="keyboard_arrow_right" ></md-icon>
+              </md-list-item>
+
+            </md-list>
+
+          </md-content>
+
+          <div class="md-padding md-whiteframe-2dpv statu" style="margin-left: 20px;" ng-controller="ListCtrl">
+            <md-list-item>
+              <md-icon ng-md-icon icon="description" style="margin-top: 7px;"></md-icon>
+              <p>Tout les Articles: {{artList.length}}</p>
+            </md-list-item>
+
+            <md-list-item>
+              <md-icon ng-md-icon icon="verified_user" style="margin-top: 7px;"></md-icon>
+              <p>Article confirmé: {{artAcs}}</p>
+            </md-list-item>
+
+            <md-list-item>
+              <md-icon ng-md-icon icon="watch_later" style="margin-top: 7px;"></md-icon>
+              <p>Article En Attente: {{artPtn}}</p>
+            </md-list-item>
+
+          </div>
+        </div>
+
+      </md-tab>
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h2 class="md-display-1">Tab Three</h2>
+          <p class="md-body-1">
+            Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
+            posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse
+            vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+            commodo volutpat non ac est.
+          </p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+  </div>
+</div>

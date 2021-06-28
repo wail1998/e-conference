@@ -1,0 +1,157 @@
+<script type="text/javascript">
+  /*$(function () {
+    $('.dddf').height($(window).height() - $('.fdd').height() - 35);
+  });*/
+</script>
+
+<style media="screen">
+  .rd-content{
+    background-size: 100% 100%;
+    background-image: url(asset/img/bk.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .rd-content::after{
+    content: " ";
+    background-color: #000;
+  }
+  .txsh{
+    color: #fff;
+    text-shadow: 0px 0px 10px rgb(57 73 171), 0px 0px 10px rgb(57 73 171), 0px 0px 10px rgb(57 73 171);
+  }
+  .w-form{
+    background-color: rgb(255 255 255 / 70%);
+    padding: 20px;
+    border-radius: 5px;
+  }
+  .w-hr{
+    width: 90%;
+    height: 1px;
+    background-color: #283593;
+  }
+
+  .dddf{
+    background-color: #ffffff52;
+    border-radius: 5px;
+  }
+
+  .dfdf{
+    background-color: rgb(255 255 255 / 70%);
+    padding-left: 15px;
+    padding-right: 5px;
+  }
+</style>
+
+<div layout-padding class="dddf" layout="column" flex>
+  <div class=""></div>
+  <div layout="row" layout-align="center center" flex="">
+    <div class="dfdf" flex="30">
+      <h1 class="txsh">E-Conference</h1>
+      <p>
+        <h3>inscrivez-vous pour pouvoir soumissionner vos dernières recherches</h3>
+        Rejoignez le meilleur espace pour publier des articles <br>
+        et rencontrer de nombreuses personnes pour partager <br>
+        votre expérience.
+      </p>
+    </div>
+    <div layout="row" flex="">
+
+      <div flex=""></div>
+      <div class="w-form" layout="column" layout-align="center center" flex="40">
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Email</label>
+          <md-icon ng-md-icon icon="email" style="fill: #283593"></md-icon>
+          <input ng-model="user.email" type="email">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Mot de passe</label>
+          <md-icon ng-md-icon icon="lock" style="fill: #283593"></md-icon>
+          <input ng-model="user.pass" type="password">
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" ng-click="login()">
+          <md-icon ng-md-icon icon="login"></md-icon>
+          Connexion
+        </md-button>
+
+        <br>
+        <div class="w-hr"></div>
+        <br>
+
+        <md-button class="md-raised md-primary" style="background-color: #42b72a;" ng-click="newUser()">
+          <md-icon ng-md-icon icon="account_circle"></md-icon>
+          Créer un compte
+        </md-button>
+
+        <span style="text-align: center;padding-top:10px;">
+          Créer un compte pour partager vos articles avec des professionels
+        </span>
+
+      </div>
+      <div flex=""></div>
+
+    </div>
+  </div>
+  <div class=""></div>
+</div>
+
+
+<div style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+
+      <md-dialog style="width: 40%;" layout="column">
+
+        <md-toolbar ng-controller="toolbar" class="fdd md-hue-2">
+          <div class="md-toolbar-tools">
+            <md-icon ng-md-icon icon="account_circle"></md-icon>
+
+            <h2 ng-click="GoHome()" style="cursor: pointer;" flex md-truncate> +      Créer un compte</h2>
+
+            <md-button class="md-icon-button" ng-click="close($evant)" aria-label="close">
+              <md-icon ng-md-icon icon="close"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <div layout-padding flex="">
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Username</label>
+            <md-icon ng-md-icon icon="account_box" style="fill: #283593"></md-icon>
+            <input ng-model="newUser.uname" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Email</label>
+            <md-icon ng-md-icon icon="email" style="fill: #283593"></md-icon>
+            <input ng-model="newUser.email" type="email">
+            <span ng-show="isEmail" style="color: red;">Cet Email est déjà utilisé.</span>
+          </md-input-container>
+
+
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Mot de passe</label>
+            <md-icon ng-md-icon icon="lock" style="fill: #283593"></md-icon>
+            <input ng-model="newUser.pass" type="password">
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <span flex></span>
+          <md-button class="md-raised md-primary" style="background-color: #dd2c00;" ng-click="close($evant)">
+            Fermer
+          </md-button>
+
+          <md-button class="md-raised md-primary" ng-click="signup()">
+            Créer
+          </md-button>
+        </div>
+
+      </md-dialog>
+    </div>
+  </div>

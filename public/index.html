@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>E-Conference</title>
+    <link rel="stylesheet" href="asset/js/ng/angular-material.min.css">
+  </head>
+  <body ng-app="RDapp" layout="column" flex="100" ng-cloak md-theme="{{ dynamicTheme }}" md-theme-watch >
+
+    <md-toolbar ng-controller="toolbar" class="fdd md-hue-2">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="GoHome()" aria-label="home">
+          <md-icon ng-md-icon icon="home"></md-icon>
+        </md-button>
+
+        <h2 ng-click="GoHome()" style="cursor: pointer;" flex md-truncate ; font-family: "Gill Sans", sans-serif;color:"#FFF"><b>E-Conference</b></h2>
+        <span flex></span>
+        <!-- afficher si on est dans la page darticle -->
+        <div ng-show="isArticle" layout="column" flex >
+          <span ng-show="isArticle" flex style="font-size: 12px;">
+            <md-icon ng-md-icon icon="description"></md-icon>
+            {{article.title}}
+          </span>
+          <span ng-show="isArticle" flex style="font-size: 12px;">
+            <md-icon ng-md-icon icon="account_circle"></md-icon>
+            By: {{article.user.name}}
+          </span>
+        </div>
+
+        <span flex></span>
+        <!-- bouton compte -->
+
+        <md-button ng-show="BTlogin" class="md-raised md-primary" style="background-color: #dd2c00;" ng-click="GoLogin()">
+          <md-icon ng-md-icon icon="account_circle"></md-icon>
+          compte
+        </md-button>
+        <!-- ajouter -->
+
+        <md-button ng-hide="BTlogin" class="md-raised md-primary" style="background-color: #dd7c55;" ng-click="addArt($event)">
+          <md-icon ng-md-icon icon="add"></md-icon>
+          Soumissionner
+        </md-button>
+        <!-- dark mode -->
+
+        <md-button class="md-icon-button" ng-click="rdynamicTheme()" aria-label="Theme">
+          <md-icon ng-md-icon icon="brightness_3"></md-icon>
+        </md-button>
+        <!--profile  -->
+
+        <md-button ng-hide="BTlogin" class="md-icon-button" ng-click="gc()" aria-label="logout">
+          <md-icon ng-md-icon icon="account_circle"></md-icon>
+        </md-button>
+        <!-- deconexion  -->
+
+        <md-button ng-hide="BTlogin" class="md-icon-button" ng-click="logout()" aria-label="logout">
+          <md-icon ng-md-icon icon="power_settings_new"></md-icon>
+        </md-button>
+      </div>
+
+    </md-toolbar>
+
+    <div class="rd-content" layout="row" flex="" ng-view="">
+
+    </div>
+
+
+
+    <script src="asset/js/jquery.min.js"></script>
+    <script src="asset/js/jquery.iframe-auto-height.plugin.js"></script>
+    <script src="asset/js/ng/angular.min.js"></script>
+    <script src="asset/js/ng/angular-route.min.js"></script>
+    <script src="asset/js/ng/angular-animate.min.js"></script>
+    <script src="asset/js/ng/angular-aria.min.js"></script>
+    <script src="asset/js/ng/angular-messages.min.js"></script>
+    <script src="asset/js/ng/angular-material.min.js"></script>
+    <script src="asset/js/ng/angular-material-icons.min.js"></script>
+    <script src="asset/js/ng-file-upload-all.min.js"></script>
+    <script src="asset/js/app.js"></script>
+  </body>
+</html>
