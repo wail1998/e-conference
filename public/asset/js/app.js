@@ -1,4 +1,4 @@
-var apiUrl = 'http://127.0.0.1';
+var apiUrl = 'https://wail-e-conference.herokuapp.com';
 
 angular.module('RDapp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngMdIcons','ngFileUpload'])
 .config(function($routeProvider, $mdThemingProvider, $locationProvider) {
